@@ -12,16 +12,27 @@ const questions = [
 		name: "title",
 	},
 	{
-		message: "Please enter the description for your project...",
+		message: "Please enter a brief description for your project:",
 		name: "description",
 	},
 	{
-		message: "What are the installation instructions for your project?",
+		message: "What are the installation instructions for your project, if any?",
 		name: "installation",
 	},
 	{
-		message: "What is the usage information for your project?",
+		message: "How is this project used?",
 		name: "usage",
+	},
+	{
+		type: "list",
+		message: "Would you like to license your project?",
+		choices: [
+			"None",
+			"Apache 2.0 License",
+			"GNU General Public License v3.0",
+			"The MIT License",
+		],
+		name: "license",
 	},
 	{
 		message: "How would someone contribute to your project?",
