@@ -42,13 +42,24 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+	fs.writeFile(fileName, data, err => {
+		if (err) throw err;
+		console.log("File written successfully!");
+	});
+}
 
 // TODO: Create a function to initialize app
 function init() {
+	// Check to make sure our output directory exists and create it if necessary.
+	const outputDir = path.parse(outputFile).dir;
+	if (!fs.existsSync(outputDir)) {
+		fs.mkdirSync(outputDir);
+	}
+
 	// Gather user details, generate the markdown, and write to a file.
 	inquirer.prompt(questions).then(answers => {
-		console.log(answers);
+		writeToFile(outputFile, generateMarkdown(answers));
 	});
 }
 
