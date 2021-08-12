@@ -6,6 +6,11 @@ const generateMarkdown = require("./utils/generateMarkdown.js");
 
 // Location of the output README.md file
 const outputFile = "./output/README.md";
+// Default headers used for Github license API
+const githubLicenseApiHeaders = {
+	Accept: "application/vnd.github.v3+json",
+	"User-Agent": "MichaelHermes",
+};
 
 let availableLicenses = [];
 
@@ -85,10 +90,7 @@ const getContent = (url, headers) => {
 function getLicenseContent(url) {
 	// Return a new pending promise
 	return new Promise((resolve, reject) => {
-		getContent(url, {
-			Accept: "application/vnd.github.v3+json",
-			"User-Agent": "MichaelHermes",
-		})
+		getContent(url, githubLicenseApiHeaders)
 			.then(licenseObj => {
 				// Resolve with an object of desired license properties.
 				resolve({
@@ -105,10 +107,7 @@ function getLicenseContent(url) {
 async function getCommonlyUsedLicenses() {
 	await getContent(
 		"https://api.github.com/licenses?featured=true&per_page=5&page=1",
-		{
-			Accept: "application/vnd.github.v3+json",
-			"User-Agent": "MichaelHermes",
-		}
+		githubLicenseApiHeaders
 	)
 		.then(async featuredLicenses => {
 			let licenses = featuredLicenses.map(license =>
@@ -116,12 +115,7 @@ async function getCommonlyUsedLicenses() {
 			);
 			await Promise.all(licenses)
 				.then(licenseDetails => {
-					// for (const license of licenseDetails) {
-					// 	let test = {};
-					// 	test[license.badgeDisplayName] = license;
-					// 	availableLicenses.push();
-					// }
-					availableLicenses = licenseDetails;
+					availableLicenses = licenseDetails; // Persist a global copy of the license information for use outside this callback.
 					insertLicensesIntoQuestions();
 				})
 				.catch(err => console.error(err));
@@ -144,7 +138,7 @@ function insertLicensesIntoQuestions() {
 	});
 }
 
-// TODO: Create a function to write README file
+// A helper function to write data to a file. This will ultimately write the README markdown content to the output file.
 function writeToFile(fileName, data) {
 	fs.writeFile(fileName, data, err => {
 		if (err) throw err;
@@ -152,7 +146,7 @@ function writeToFile(fileName, data) {
 	});
 }
 
-// TODO: Create a function to initialize app
+// Initializes the applicaiton by readying the output directory, obtaining license information from the Github License API, and gathering user input.
 async function init() {
 	// Check to make sure our output directory exists and create it if necessary.
 	const outputDir = path.parse(outputFile).dir;
