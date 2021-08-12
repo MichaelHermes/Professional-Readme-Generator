@@ -115,8 +115,14 @@ async function getCommonlyUsedLicenses() {
 				getLicenseContent(license.url)
 			);
 			await Promise.all(licenses)
-				.then(availableLicenses => {
-					insertLicensesIntoQuestions(availableLicenses);
+				.then(licenseDetails => {
+					// for (const license of licenseDetails) {
+					// 	let test = {};
+					// 	test[license.badgeDisplayName] = license;
+					// 	availableLicenses.push();
+					// }
+					availableLicenses = licenseDetails;
+					insertLicensesIntoQuestions();
 				})
 				.catch(err => console.error(err));
 		})
@@ -124,7 +130,7 @@ async function getCommonlyUsedLicenses() {
 }
 
 // Constructs the license question and splices it into the questions array.
-function insertLicensesIntoQuestions(availableLicenses) {
+function insertLicensesIntoQuestions() {
 	let licenseChoices = ["None"];
 	for (const license of availableLicenses) {
 		licenseChoices.push(license.displayName);
@@ -159,6 +165,10 @@ async function init() {
 
 	// Gather user details, generate the markdown, and write to a file.
 	inquirer.prompt(questions).then(answers => {
+		// Add the license information to the answers that get passed to 'generateMarkdown' so that the appropriate license badge and link can be generated.
+		for (const license of availableLicenses) {
+			answers[license.displayName] = license;
+		}
 		writeToFile(outputFile, generateMarkdown(answers));
 	});
 }
