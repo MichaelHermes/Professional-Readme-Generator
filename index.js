@@ -1,4 +1,3 @@
-// TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
 const path = require("path");
@@ -14,7 +13,6 @@ const githubLicenseApiHeaders = {
 
 let availableLicenses = [];
 
-// TODO: Create an array of questions for user input
 // This needs to be 'let' instead of 'const' to allow the licenses to be dynamically inserted into the array.
 let questions = [
 	{
@@ -146,7 +144,7 @@ function writeToFile(fileName, data) {
 	});
 }
 
-// Initializes the applicaiton by readying the output directory, obtaining license information from the Github License API, and gathering user input.
+// Initializes the application by readying the output directory, obtaining license information from the Github License API, and gathering user input.
 async function init() {
 	// Check to make sure our output directory exists and create it if necessary.
 	const outputDir = path.parse(outputFile).dir;

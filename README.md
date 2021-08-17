@@ -4,7 +4,7 @@
 
 ## Description
 
-This console application will accept user input from the command line and generate a README markdown file using that input.
+This Node.js console application will accept user input from the command line and generate a README markdown file using that input.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ This console application will accept user input from the command line and genera
 
 ## Installation
 
-The 'inquirer' package is required in order to execute this application successfully.
+The 'inquirer' Node.js package is required in order to execute this application successfully. If `packages.json` is present, run `npm i`. Otherwise, run `npm i inquirer`.
 
 ## Usage
 
@@ -39,4 +39,4 @@ None
 
 ## Questions?
 
-Find me on [Github](https://github.com/https://github.com/michaeljhermes) or email me at [mikehermes87@gmail.com](mailto:mikehermes87@gmail.com).
+Find me on [Github](https://github.com/michaelhermes) or email me at [mikehermes87@gmail.com](mailto:mikehermes87@gmail.com).

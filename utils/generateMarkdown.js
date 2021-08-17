@@ -1,4 +1,4 @@
-// Returns the markdown to render a license badge if a license was selected by the user. Returns and empty string otherwise.
+// Returns the markdown to render a license badge if a license was selected by the user. Returns and empty string if the user chose not to license the application.
 function renderLicenseBadge(answers) {
 	return answers.license == "None"
 		? ""
@@ -9,7 +9,7 @@ function renderLicenseBadge(answers) {
 		  })`;
 }
 
-// Returns a link to access details about the chosen license. Returns an empty string otherwise.
+// Returns a link to access details about the chosen license. Returns an empty string if the user chose not to license the application.
 function renderLicenseLink(answers) {
 	return answers.license == "None" ? "" : answers[answers.license].link;
 }
