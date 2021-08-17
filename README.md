@@ -22,6 +22,7 @@ The 'inquirer' Node.js package is required in order to execute this application 
 ## Usage
 
 The user answers a series of questions on the command line and their answers are used to generate a professional README markdown file.
+![Node.js console application user input to generate README file.](./assets/img/README-Generator.jpg)
 
 ## License
 
