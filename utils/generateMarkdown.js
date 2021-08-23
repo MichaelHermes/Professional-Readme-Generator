@@ -28,11 +28,13 @@ This application is covered under the ${
 	}
 }
 
-// Returns the markdown content to be written into the READEM file.
+// Returns the markdown content to be written into the README file.
 function generateMarkdown(answers) {
-	return `# ${answers.title}
-${renderLicenseBadge(answers)}
+	return `<h1 align="center">${answers.title}</h1>
+
 ## Description
+${renderLicenseBadge(answers)}
+
 ${answers.description}
 ## Table of Contents
 - [Installation](#installation)

@@ -1,8 +1,9 @@
-# Professional README Generator
-
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](http://choosealicense.com/licenses/mit/)
+<h1 align="center">Professional README Generator</h1>
+<h2 align="center">Node.js</h2>
 
 ## Description
+
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](http://choosealicense.com/licenses/mit/)
 
 This Node.js console application will accept user input from the command line and generate a README markdown file using that input.
 
@@ -23,6 +24,7 @@ The 'inquirer' Node.js package is required in order to execute this application 
 
 The user answers a series of questions on the command line and their answers are used to generate a professional README markdown file.
 ![Node.js console application user input to generate README file.](./assets/img/README-Generator.jpg)
+A video demonstration of this Node.js application can be found [here](https://www.screencast.com/t/0NPhXhf8).
 
 ## License
 
